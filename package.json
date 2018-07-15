@@ -1,6 +1,6 @@
 {
   "name": "react-comments-void",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A react component that create a comment section that is not connected to any backend. The user will think they commented, while they will be the only one to see their comments.",
   "main": "index.js",
   "scripts": {
@@ -8,20 +8,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ctrlaltdev/commentintothevoid.git"
+    "url": "git+https://github.com/ctrlaltdev/react-comments-void.git"
   },
   "keywords": [
     "comment",
-    "comments",
     "react",
     "component"
   ],
   "author": "Yorick <yorick@ctrlaltdev.xyz> (https://ctrlaltdev.xyz)",
   "license": "MPL-2.0",
   "bugs": {
-    "url": "https://github.com/ctrlaltdev/commentintothevoid/issues"
+    "url": "https://github.com/ctrlaltdev/react-comments-void/issues"
   },
-  "homepage": "https://github.com/ctrlaltdev/commentintothevoid#readme",
+  "homepage": "https://github.com/ctrlaltdev/react-comments-void#readme",
   "peerDependencies": {
     "react": "16.x",
     "react-dom": "16.x"
