@@ -1,0 +1,23 @@
+.comments-void__list{
+  list-style: none;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+.comments-void__list-item{
+  margin: 0;
+  padding: 5px;
+  box-sizing: border-box;
+}
+.comments-void__list-item:hover{
+  background-color: #F6F6F6;
+}
+.comments-void__list-item span{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: bold;
+  margin-right: 20px;
+}

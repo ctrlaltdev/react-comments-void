@@ -1,4 +1,6 @@
 import React, { Component}  from 'react'
+import './commentform.css'
+import './commentlist.css'
 
 export class CommentForm extends Component {
   constructor(props) {
@@ -27,8 +29,10 @@ export class CommentForm extends Component {
   render() {
     return (
       <form className="comments-void__form" onSubmit={this.handleSubmit}>
-        <input name="author" placeholder="Your name" onChange={this.handleChange} value={this.state.author} />
-        <textarea name="comment" placeholder="Your comment here..." onChange={this.handleChange} value={this.state.comment}></textarea>
+        <fieldset>
+          <input name="author" className="comments-void__form-name" placeholder="Your name" onChange={this.handleChange} value={this.state.author} />
+          <textarea name="comment" className="comments-void__form-comment" placeholder="Your comment here..." onChange={this.handleChange} value={this.state.comment}></textarea>
+        </fieldset>
         <button>Send</button>
       </form>
     )
@@ -37,7 +41,7 @@ export class CommentForm extends Component {
 
 class Comment extends Component {
   render() {
-    return <li>{this.props.author}: {this.props.comment}</li>
+    return <li className="comments-void__list-item"><span>{this.props.author}</span> {this.props.comment}</li>
   }
 }
 
