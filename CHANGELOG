@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 - N/A
 
+## [1.1.0] - 2021-05-15
+### Changed
+- Add linting
+- Add PropTypes
+
+### Changed
+- Updated dependencies requirements
+- Refactor to use functional components
+
 ## [1.0.1] - 2018-07-15
 ### Added
 - README.md file

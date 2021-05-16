@@ -1,35 +1,21 @@
-import React, { Component}  from 'react'
+import React, { useState } from 'react'
 
-import {CommentForm, CommentsList} from './components'
+import { CommentForm, CommentsList } from './components'
 
-class CommentIntoTheVoid extends Component {
-  constructor(props) {
-    super(props)
+const CommentIntoTheVoid = () => {
+  const [comments, updateComments] = useState(localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments')) : [])
 
-    let comments = localStorage.getItem('comments') ?
-      JSON.parse(localStorage.getItem('comments')) :
-      []
-
-    this.state = {comments: comments}
-
-    this.postComment = this.postComment.bind(this)
+  const postComment = newComment => {
+    updateComments([...comments, newComment])
+    localStorage.setItem('comments', JSON.stringify([...comments, newComment]))
   }
 
-  postComment(newComment) {
-    let comments = this.state.comments
-    comments.push(newComment)
-    this.setState({comments: comments})
-    localStorage.setItem('comments', JSON.stringify(comments))
-  }
-
-  render() {
-    return (
-      <div className="comments-void">
-        <CommentForm post={this.postComment} />
-        <CommentsList comments={this.state.comments} />
-      </div>
-    )
-  }
+  return (
+    <div className="comments-void">
+      <CommentForm post={ postComment } />
+      <CommentsList comments={ comments } />
+    </div>
+  )
 }
 
 export default CommentIntoTheVoid

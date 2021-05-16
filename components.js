@@ -1,58 +1,47 @@
-import React, { Component}  from 'react'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import './commentform.css'
 import './commentlist.css'
 
-export class CommentForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      comment: '',
-      author: ''
-    }
+export const CommentForm = ({ post }) => {
+  const [comment, updateComment] = useState('')
+  const [author, updateAuthor] = useState('')
 
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-  }
-
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    this.props.post({author: this.state.author, content: this.state.comment})
-    this.setState({comment: ''})
+    post({ author, content: comment })
+    updateComment('')
   }
 
-  render() {
-    return (
-      <form className="comments-void__form" onSubmit={this.handleSubmit}>
-        <fieldset>
-          <input name="author" className="comments-void__form-name" placeholder="Your name" onChange={this.handleChange} value={this.state.author} />
-          <textarea name="comment" className="comments-void__form-comment" placeholder="Your comment here..." onChange={this.handleChange} value={this.state.comment}></textarea>
-        </fieldset>
-        <button>Send</button>
-      </form>
-    )
-  }
+  return (
+    <form className="comments-void__form" onSubmit={ handleSubmit }>
+      <fieldset>
+        <input name="author" className="comments-void__form-name" placeholder="Your name" onChange={ e => updateAuthor(e.target.value) } value={ author } />
+        <textarea name="comment" className="comments-void__form-comment" placeholder="Your comment here..." onChange={ e => updateComment(e.target.value) } value={ comment }></textarea>
+      </fieldset>
+      <button>Send</button>
+    </form>
+  )
+}
+CommentForm.propTypes = {
+  post: PropTypes.func.isRequired
 }
 
-class Comment extends Component {
-  render() {
-    return <li className="comments-void__list-item"><span>{this.props.author}</span> {this.props.comment}</li>
-  }
+const Comment = ({ author, comment }) => (
+  <li className="comments-void__list-item"><span>{ author }</span> { comment }</li>
+)
+Comment.propTypes = {
+  author: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired
 }
 
-export class CommentsList extends Component {
-  render() {
-    return (
-      <ul className="comments-void__list">
-        {this.props.comments.map((comment, index) =>
-          <Comment key={index} author={comment.author} comment={comment.content} />
-        )}
-      </ul>
-    )
-  }
+export const CommentsList = ({ comments }) => (
+  <ul className="comments-void__list">
+    {comments.map((comment, index) =>
+      <Comment key={ index } author={ comment.author } comment={ comment.content } />
+    )}
+  </ul>
+)
+CommentsList.propTypes = {
+  comments: PropTypes.array.isRequired
 }
